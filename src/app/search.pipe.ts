@@ -7,6 +7,7 @@ export class SearchPipe implements PipeTransform {
 
   transform(adatok:any[], keresendo:string, keresMezo:string): any {
     if (!adatok) return null;
+    if (!keresendo || )
     if (!keresendo || keresendo == "") return adatok;
     return adatok.filter(
       (elem) => elem[keresMezo].toLowerCase().includes(keresendo.toLowerCase())
