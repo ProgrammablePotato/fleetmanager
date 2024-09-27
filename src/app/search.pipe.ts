@@ -5,13 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SearchPipe implements PipeTransform {
 
-  transform(adatok:any[], keresendo:string): any {
+  transform(adatok:any[], keresendo:string, keresMezo:string): any {
     if (!adatok) return null;
     if (!keresendo || keresendo == "") return adatok;
     return adatok.filter(
-      (elem) => {
-        elem.name.toLowerCase().includes(keresendo.toLowerCase())
-      }
+      (elem) => elem[keresMezo].toLowerCase().includes(keresendo.toLowerCase())
     )
   }
 

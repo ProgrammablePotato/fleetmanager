@@ -1,5 +1,19 @@
 <!-- {{drivers|json}} -->
 
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    </button>
+    <div class="dropdown-menu" [ngbCollapse]="menuNyit">
+        <li><a (click)="mezoKivalaszt('')" class="dropdown-item">Mindenhol</a></li>
+        <li *ngFor="let oszlop of oszlopok"><a class="dropdown-item" (click)="mezoKivalaszt(oszlop.key)">{{oszlop.text}}</a></li>
+    </div>
+</div>
+
+<div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Keresés</span>
+    <input [(ngModel)]="keresendo" type="text" class="form-control">
+</div>
+
 <div class="row">
     <div *ngFor="let oszlop of oszlopok" class="col">
         {{oszlop.text}}
@@ -24,7 +38,7 @@
     </div>
 </div>
 <!-- Ezt ne bántsd UwU -->
-<div *ngFor="let driver of drivers" class="row" style="margin-bottom: 5px;">
+<div *ngFor="let driver of drivers|search:keresendo:keresMezo" class="row" style="margin-bottom: 5px;">
     <div *ngFor="let oszlop of oszlopok" class="col">
         <ng-container *ngIf="oszlop.type!='plain';else notchange">
             <input [(ngModel)]="driver[oszlop.key]" [type]="oszlop.type" class="form-control" >
